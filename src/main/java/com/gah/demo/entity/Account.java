@@ -20,7 +20,7 @@ public class Account {
     private String password;
 
     @Column(name = "identity_number")
-    private BigInteger identityNumber;
+    private Long identityNumber;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -60,11 +60,11 @@ public class Account {
         this.password = password;
     }
 
-    public BigInteger getIdentityNumber() {
+    public Long getIdentityNumber() {
         return identityNumber;
     }
 
-    public void setIdentityNumber(BigInteger identityNumber) {
+    public void setIdentityNumber(Long identityNumber) {
         this.identityNumber = identityNumber;
     }
 

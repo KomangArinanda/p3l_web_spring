@@ -2,6 +2,7 @@ package com.gah.demo.service;
 
 
 import com.gah.demo.entity.Account;
+import com.gah.demo.request.SignupRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public interface AccountService {
 //    List<Account> getAllGuest();
 //    Account get(Integer id);
     Account getByEmail(String email);
+    Account add(SignupRequest request);
 //    Account addGuest(RegisterGuestRequest request);
 //    Account addEmployee(SaveEmployeeRequest request);
 //    Account updateEmployee(Integer id, SaveEmployeeRequest request);

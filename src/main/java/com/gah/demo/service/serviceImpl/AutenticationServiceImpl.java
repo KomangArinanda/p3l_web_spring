@@ -2,6 +2,7 @@ package com.gah.demo.service.serviceImpl;
 
 import com.gah.demo.entity.Account;
 import com.gah.demo.request.LoginRequest;
+import com.gah.demo.request.SignupRequest;
 import com.gah.demo.service.AccountService;
 import com.gah.demo.service.AutenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +23,24 @@ public class AutenticationServiceImpl implements AutenticationService {
     public Account login(LoginRequest request) {
         Account account = new Account();
         try{
-            System.out.println(request.getEmail());
             account = accountService.getByEmail(request.getEmail());
-//            System.out.println("Pass : "+passwordEncoder.encode(account.getPassword()));
-//            System.out.println("Decode : "+passwordEncoder.);
             if(account.getPassword().equals(request.getPassword())){
                 return account;
             }
-            System.out.println("Here");
         }catch (Exception EX){
-            System.out.println("Fail");
+            System.out.println("Login Fail");
+            System.out.println(EX.getMessage());
+        }
+        return account;
+    }
+
+    @Override
+    public Account signUp(SignupRequest request) {
+        Account account = new Account();
+        try{
+            account = accountService.add(request);
+        }catch (Exception EX){
+            System.out.println("SignUp Fail");
             System.out.println(EX.getMessage());
         }
         return account;

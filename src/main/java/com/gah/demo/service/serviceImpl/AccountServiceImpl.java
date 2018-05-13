@@ -3,6 +3,7 @@ package com.gah.demo.service.serviceImpl;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gah.demo.entity.Account;
 import com.gah.demo.repository.AccountRepository;
+import com.gah.demo.request.SignupRequest;
 import com.gah.demo.service.AccountService;
 import com.gah.demo.service.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,23 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account getByEmail(String email) {
         return accountRepository.findOneByEmail(email);
+    }
+
+    @Override
+    public Account add(SignupRequest request) {
+        Account account = new Account();
+
+        account.setName(request.getName());
+        account.setEmail(request.getEmail());
+        System.out.println(request.getPassword());
+        account.setIdentityNumber(request.getIdentityNumber());
+        account.setTelephone(request.getTelephone());
+        account.setAddress(request.getAddress());
+        account.setPassword(request.getPassword());
+        account.setRole("guest");
+        account.setStatus("active");
+
+        return accountRepository.save(account);
     }
 
 //    @Override
